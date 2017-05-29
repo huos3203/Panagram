@@ -10,8 +10,8 @@ import Foundation
 
 //This defines the output method to use when writing messages
 enum OutputType {
-    case Error
-    case Standard
+    case error
+    case standard
 }
 
 //Panagram has three options: -p to detect palindromes, -a for anagrams and -h to show the usage information.
@@ -44,7 +44,7 @@ class ConsoleIO{
     //prints usage information to the console
     class func printUsage(){
         //Process is a small wrapper around the argc and argv arguments you may know from C-like languages
-        let executableName = (Process.arguments[0] as NSString).lastPathComponent
+        let executableName = (CommandLine.arguments[0] as NSString).lastPathComponent
         print("usage:")
         print("\(executableName) -a string1 string2")
         print("or")
@@ -55,17 +55,17 @@ class ConsoleIO{
     }
     
     //accepts a String as its argument and returns a tuple of OptionType and String.
-    func getOption(option:String) -> (option:OptionType,value:String) {
+    func getOption(_ option:String) -> (option:OptionType,value:String) {
         //
         return (OptionType(value:option),option)
     }
 
     //This function has two parameters; the first is the actual message to print, and the second is where to write it. This defaults to .Standard.
-    func writeMessage(message:String,to:OutputType = .Standard) {
+    func writeMessage(_ message:String,to:OutputType = .standard) {
         switch to {
-        case .Standard:
+        case .standard:
             print("\u{001B}[;m\(message)]")
-        case .Error:
+        case .error:
             fputs("\u{001B}[0;31m\(message)\n]", stderr)
         }
     }
@@ -73,12 +73,12 @@ class ConsoleIO{
     
     func getInput() -> String {
         //1. First, grab a handle to stdin.
-        let keyboard = NSFileHandle.fileHandleWithStandardInput()
+        let keyboard = FileHandle.standardInput
         //2. read any data on the stream.
         let inputData = keyboard.availableData
         //3. Convert the data to a string.
-        let strData = NSString(data: inputData,encoding: NSUTF8StringEncoding)!
+        let strData = NSString(data: inputData,encoding: String.Encoding.utf8.rawValue)!
         //4. remove any newline characters and return the string.
-        return strData.stringByTrimmingCharactersInSet(NSCharacterSet.newlineCharacterSet())
+        return strData.trimmingCharacters(in: CharacterSet.newlines)
     }
 }

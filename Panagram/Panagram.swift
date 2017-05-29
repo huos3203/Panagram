@@ -13,11 +13,11 @@ class Panagram {
     let consoleIO = ConsoleIO()
     func staticMode() {
         //1. get the number of arguments passed to the program.
-        let argCount = Process.argc
+        let argCount = CommandLine.argc
         //2.  take the first “real” argument from the arguments array.
-        let argument = Process.arguments[1]
+        let argument = CommandLine.arguments[1]
         //3. parse the argument and convert it to an OptionType.
-        let (option,value) = consoleIO.getOption(argument.substringFromIndex(argument.startIndex.advancedBy(1)))
+        let (option,value) = consoleIO.getOption(argument.substring(from: argument.characters.index(argument.startIndex, offsetBy: 1)))
         
         //4. log the parsing results to the console.
 //        print("Argument count:\(argCount) Option:\(option) value:\(value)")
@@ -29,43 +29,43 @@ class Panagram {
             if argCount != 4 {
                 if argCount > 4 {
                     //
-                    consoleIO.writeMessage("Too many arguments for option \(option.rawValue)", to: .Error)
+                    consoleIO.writeMessage("Too many arguments for option \(option.rawValue)", to: .error)
                 }else{
-                    consoleIO.writeMessage("Too few arguments for option \(option.rawValue)", to: .Error)
+                    consoleIO.writeMessage("Too few arguments for option \(option.rawValue)", to: .error)
                 }
                 
                 ConsoleIO.printUsage()
             
             }else{
                 //3. If the argument count is good, store the two strings in local variables, check the strings and print the result.
-                let first = Process.arguments[2]
-                let second = Process.arguments[3]
+                let first = CommandLine.arguments[2]
+                let second = CommandLine.arguments[3]
                 if first.isAnagramOfString(second) {
-                    consoleIO.writeMessage("\(second) is an anagram of \(first)", to: .Error)
+                    consoleIO.writeMessage("\(second) is an anagram of \(first)", to: .error)
                 }else{
-                    consoleIO.writeMessage("\(second) is not an anagram of \(first)", to: .Error)
+                    consoleIO.writeMessage("\(second) is not an anagram of \(first)", to: .error)
                 }
             }
         case .Palindrome:
             //4. In the case of a palindrome, you must have three arguments.
             if argCount != 3 {
                 if argCount > 3 {
-                    consoleIO.writeMessage("Too many arguments for option \(option.rawValue)", to: .Error)
+                    consoleIO.writeMessage("Too many arguments for option \(option.rawValue)", to: .error)
                 }else{
-                    consoleIO.writeMessage("Too few arguments for option \(option.rawValue)", to: .Error)
+                    consoleIO.writeMessage("Too few arguments for option \(option.rawValue)", to: .error)
                 }
             }else{
                 //5. Check for the palindrome and print the result.
-                let s = Process.arguments[2]
+                let s = CommandLine.arguments[2]
                 let isPalindrome = s.isPalindrome()
-                consoleIO.writeMessage("\(s) is \(isPalindrome ? "" : "not ")a palindrome", to: .Error)
+                consoleIO.writeMessage("\(s) is \(isPalindrome ? "" : "not ")a palindrome", to: .error)
             }
         case .Help:
             //6. If the -h option was passed in, then print the usage information.
             ConsoleIO.printUsage()
         case .Unknown, .Quit:
             //7. If an unknown option is passed, print the usage to the console.
-            consoleIO.writeMessage("Unknown option \(value)", to: .Error)
+            consoleIO.writeMessage("Unknown option \(value)", to: .error)
             ConsoleIO.printUsage()
         }
     }
@@ -101,7 +101,7 @@ class Panagram {
                 shouldQuit = true
             default:
                 //6. If the user enters an unknown option, print an error and start the loop again.
-                consoleIO.writeMessage("Unknown option \(value)",to: .Error)
+                consoleIO.writeMessage("Unknown option \(value)",to: .error)
             }
         }
     }

@@ -11,7 +11,7 @@ import Foundation
 
 let panagram = Panagram()
 
-if Process.argc < 2{
+if CommandLine.argc < 2{
     //Handle interactive mode
     panagram.interactiveMode()
 }else{
