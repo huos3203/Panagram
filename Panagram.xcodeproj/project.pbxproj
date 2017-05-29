@@ -31,6 +31,7 @@
 		14562FCA1D10F49000DB35E2 /* ConsoleIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleIO.swift; sourceTree = "<group>"; };
 		14562FCC1D10F66800DB35E2 /* Panagram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Panagram.swift; sourceTree = "<group>"; };
 		14562FCE1D11049B00DB35E2 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		840C94351EDBCBB60013FA66 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +48,7 @@
 		14562FB71D10F39100DB35E2 = {
 			isa = PBXGroup;
 			children = (
+				840C94351EDBCBB60013FA66 /* README.md */,
 				14562FC21D10F39100DB35E2 /* Panagram */,
 				14562FC11D10F39100DB35E2 /* Products */,
 			);

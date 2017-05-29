@@ -14,7 +14,7 @@ enum OutputType {
     case standard
 }
 
-//Panagram has three options: -p to detect palindromes, -a for anagrams and -h to show the usage information.
+//Panagram有三个选项：-p检测回文，-a 组词和 -h显示使用信息。
 enum OptionType:String {
     case Palindrome = "p"
     case Anagram = "a"
@@ -41,9 +41,10 @@ enum OptionType:String {
 
 class ConsoleIO{
     
-    //prints usage information to the console
+    //在控制台上输出使用信息
     class func printUsage(){
-        //Process is a small wrapper around the argc and argv arguments you may know from C-like languages
+        
+        //CommandLine是工具包中的两个参数argc和argv参数
         let executableName = (CommandLine.arguments[0] as NSString).lastPathComponent
         print("usage:")
         print("\(executableName) -a string1 string2")
@@ -54,13 +55,13 @@ class ConsoleIO{
         print("Type \(executableName) without an option to enter interactive mode.")
     }
     
-    //accepts a String as its argument and returns a tuple of OptionType and String.
+    //接受一个字符串作为参数并返回一个元组的OptionType和字符串。
     func getOption(_ option:String) -> (option:OptionType,value:String) {
         //
         return (OptionType(value:option),option)
     }
 
-    //This function has two parameters; the first is the actual message to print, and the second is where to write it. This defaults to .Standard.
+    //这个函数有两个参数：第一个是打印的实际消息，第二个是在OutputType。默认为.standard。
     func writeMessage(_ message:String,to:OutputType = .standard) {
         switch to {
         case .standard:
@@ -76,9 +77,9 @@ class ConsoleIO{
         let keyboard = FileHandle.standardInput
         //2. read any data on the stream.
         let inputData = keyboard.availableData
-        //3. Convert the data to a string.
+        //3. data转字符串.
         let strData = NSString(data: inputData,encoding: String.Encoding.utf8.rawValue)!
-        //4. remove any newline characters and return the string.
+        //4. 删除任何换行符和返回字符串。
         return strData.trimmingCharacters(in: CharacterSet.newlines)
     }
 }

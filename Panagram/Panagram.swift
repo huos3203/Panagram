@@ -12,14 +12,14 @@ class Panagram {
     //
     let consoleIO = ConsoleIO()
     func staticMode() {
-        //1. get the number of arguments passed to the program.
+        //1. 获取传递给程序的参数的数目。
         let argCount = CommandLine.argc
-        //2.  take the first “real” argument from the arguments array.
+        //2.  从参数数组中获取第一个“real”参数。
         let argument = CommandLine.arguments[1]
-        //3. parse the argument and convert it to an OptionType.
+        //3. 解析参数并将它转换为一个OptionType元组。
         let (option,value) = consoleIO.getOption(argument.substring(from: argument.characters.index(argument.startIndex, offsetBy: 1)))
         
-        //4. log the parsing results to the console.
+        //4. 在控制台上打印解析的结果
 //        print("Argument count:\(argCount) Option:\(option) value:\(value)")
         
         //1. First, switch to see what should be detected.
